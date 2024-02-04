@@ -19,4 +19,7 @@ project(DeepEngine VERSION 0.0.1
 ## Project presets
 include("cmake/presets.cmake")
 
+## External dependencies
+include("cmake/extern/common.cmake")
+
 add_subdirectory("src")
