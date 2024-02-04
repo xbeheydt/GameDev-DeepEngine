@@ -6,12 +6,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define TRUE                1
+#define FALSE               0
+
 #define WINDOW_WIDTH        800
 #define WINDOW_HEIGHT       600
 #define WINDOW_TITLE        "SDL2 Display Image"
 #define RENDER_DRIVER_INDEX -1
-#define TRUE                1
-#define FALSE               0
 
 int main(int argc, char **argv)
 {
