@@ -13,7 +13,7 @@
 #define TRUE                1
 #define FALSE               0
 
-int main(void)
+int main(int argc, char **argv)
 {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0)
     {
