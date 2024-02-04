@@ -43,7 +43,7 @@ endmacro()
 ## Main
 vcpkg_clone()
 vcpkg_run_bootstrap()
-if (EXISTS VCPKG_TOOLCHAIN_FILE)
+if (EXISTS ${VCPKG_TOOLCHAIN_FILE})
     set(CMAKE_TOOLCHAIN_FILE ${VCPKG_TOOLCHAIN_FILE}
         CACHE STRING "Vcpkg toolchain file")
 else()
