@@ -15,3 +15,5 @@ target_link_libraries(SDL2_health_bar PRIVATE
                       SDL2::SDL2main
                       SDL2::SDL2
                       SDL2_image::SDL2_image)
+target_compile_definitions(SDL2_health_bar
+                           PRIVATE HEALTHBAR_IMAGE="${PROJECT_SOURCE_DIR}/assets/images/healthbar.png")
