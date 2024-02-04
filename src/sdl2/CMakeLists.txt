@@ -11,3 +11,5 @@ target_link_libraries(SDL2_display_image PRIVATE
                       SDL2::SDL2main
                       SDL2::SDL2
                       SDL2_image::SDL2_image)
+target_compile_definitions(SDL2_display_image
+                           PRIVATE LETTUCE_IMAGE="${PROJECT_SOURCE_DIR}/assets/images/lettuce.png")
