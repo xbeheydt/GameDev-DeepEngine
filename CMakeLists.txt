@@ -16,7 +16,7 @@ project(DeepEngine VERSION 0.0.1
         DESCRIPTION "Yet another open source 3D game engine."
         LANGUAGES C CXX)
 
-message(STATUS "${CMAKE_SYSTEM_PROCESSOR}")
-message(STATUS "${CMAKE_HOST_SYSTEM_PROCESSOR}")
+## Project presets
+include("cmake/presets.cmake")
 
 add_subdirectory("src")
