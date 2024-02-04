@@ -1,0 +1,12 @@
+# Copyright Xavier Beheydt. All rights reserved.
+
+---
+# FIXME Create my style config
+BasedOnStyle: Microsoft
+IndentWidth: 4
+ColumnLimit: 80
+IndentPPDirectives: AfterHash
+AlignConsecutiveMacros: true
+AlignConsecutiveDeclarations: true
+AllowAllParametersOfDeclarationOnNextLine: true
+BinPackParameters: false
