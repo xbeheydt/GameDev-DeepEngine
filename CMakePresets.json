@@ -43,10 +43,6 @@
                 "CMAKE_BUILD_TYPE": {
                     "type": "STRING",
                     "value": "Debug"
-                },
-                "VCPKG_BUILD_TYPE": {
-                    "type": "STRING",
-                    "value": "debug"
                 }
             },
             "architecture": {
