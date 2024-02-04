@@ -47,8 +47,9 @@ macro(git_clone url path)
             log(FATAL_ERROR Git "clone repo '${url}' failed!")
         endif()
     else() # Git fetch
-        git_fetch(${path})
-        git_pull(${path})
+        # FIXME fetch and pull not run
+        # git_fetch(${path})
+        # git_pull(${path})
     endif()
 endmacro(git_clone url path)
 #! Git functions
