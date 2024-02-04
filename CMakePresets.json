@@ -1,0 +1,269 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "windows-base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "windows-base-clang",
+            "hidden": true,
+            "inherits": "windows-base",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "C:\\Program Files\\LLVM\\bin\\clang.exe"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "C:\\Program Files\\LLVM\\bin\\clang++.exe"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-debug",
+            "displayName": "Windows x64 Clang Debug",
+            "description": "Debug mode Windows platform with Clang compilator.",
+            "inherits": "windows-base-clang",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Debug"
+                },
+                "VCPKG_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "debug"
+                }
+            },
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            }
+        },
+        {
+            "name": "windows-x64-clang-debug-asan",
+            "displayName": "Windows x64 Clang Debug ASan",
+            "description": "Debug mode Windows platform with Clang compilator with AddressSanitizer.",
+            "inherits": "windows-x64-clang-debug",
+            "cacheVariables": {
+                "USE_ASAN": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-debug-tsan",
+            "displayName": "Windows x64 Clang Debug TSan",
+            "description": "Debug mode Windows platform with Clang compilator with ThreadSanitizer.",
+            "inherits": "windows-x64-clang-debug",
+            "cacheVariables": {
+                "USE_TSAN": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-release",
+            "displayName": "Windows x64 Clang Release",
+            "description": "Release mode Windows platform with Clang compilator.",
+            "inherits": "windows-x64-clang-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Release"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-relwithdebinfo",
+            "displayName": "Windows x64 Clang RelWithDebInfo",
+            "description": "RelWithDebInfo mode Windows platform with Clang compilator.",
+            "inherits": "windows-x64-clang-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "RelWithDebInfo"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-minsizerel",
+            "displayName": "Windows x64 Clang MinSizeRel",
+            "description": "MinSizeRel mode Windows platform with Clang compilator.",
+            "inherits": "windows-x64-clang-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "MinSizeRel"
+                }
+            }
+        },
+        {
+            "name": "windows-base-clang-cl",
+            "hidden": true,
+            "inherits": "windows-base",
+            "generator": "Visual Studio 17 2022",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "C:\\Program Files\\LLVM\\bin\\clang-cl.exe"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "C:\\Program Files\\LLVM\\bin\\clang-cl.exe"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-cl-debug",
+            "displayName": "Windows x64 Clang CL Debug",
+            "description": "Debug mode Windows platform with Clang CL compilator.",
+            "inherits": "windows-base-clang-cl",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Debug"
+                }
+            },
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            }
+        },
+        {
+            "name": "windows-x64-clang-cl-debug-asan",
+            "displayName": "Windows x64 Clang CL Debug ASan",
+            "description": "Debug mode Windows platform with Clang CL compilator with AddressSanitizer.",
+            "inherits": "windows-x64-clang-cl-debug",
+            "cacheVariables": {
+                "USE_ASAN": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-cl-debug-tsan",
+            "displayName": "Windows x64 Clang CL Debug TSan",
+            "description": "Debug mode Windows platform with Clang CL compilator with ThreadSanitizer.",
+            "inherits": "windows-x64-clang-cl-debug",
+            "cacheVariables": {
+                "USE_TSAN": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-cl-release",
+            "displayName": "Windows x64 Clang CL Release",
+            "description": "Release mode Windows platform with Clang CL compilator.",
+            "inherits": "windows-x64-clang-cl-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Release"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-cl-relwithdebinfo",
+            "displayName": "Windows x64 Clang CL RelWithDebInfo",
+            "description": "RelWithDebInfo mode Windows platform with Clang CL compilator.",
+            "inherits": "windows-x64-clang-cl-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "RelWithDebInfo"
+                }
+            }
+        },
+        {
+            "name": "windows-x64-clang-cl-minsizerel",
+            "displayName": "Windows x64 Clang CL MinSizeRel",
+            "description": "MinSizeRel mode Windows platform with Clang CL compilator.",
+            "inherits": "windows-x64-clang-cl-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "MinSizeRel"
+                }
+            }
+        },
+        {
+            "name": "linux-base",
+            "hidden": true,
+            "inherits": "windows-base",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            },
+            "vendor": {
+                "microsoft.com/VisualStudioRemoteSettings/CMake/1.0": {
+                    "sourceDir": "$env{HOME}/.vs/$ms{projectDirName}"
+                }
+            }
+        },
+        {
+            "name": "linux-base-clang",
+            "hidden": true,
+            "inherits": "linux-base",
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "/usr/bin/clang"
+                },
+                "CMAKE_CXX_COMPILER": {
+                    "type": "FILEPATH",
+                    "value": "/usr/bin/clang++"
+                }
+            }
+        },
+        {
+            "name": "linux-x64-clang-debug",
+            "displayName": "Linux x64 Clang Debug",
+            "description": "Debug mode Linux platform with Clang compilator.",
+            "inherits": "linux-base-clang",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": {
+                    "type": "STRING",
+                    "value": "Debug"
+                }
+            },
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            }
+        },
+        {
+            "name": "linux-x64-clang-debug-asan",
+            "displayName": "Linux x64 Clang Debug ASan",
+            "description": "Debug mode Linux platform with Clang compilator with AddressSanitizer.",
+            "inherits": "linux-x64-clang-debug",
+            "cacheVariables": {
+                "USE_ASAN": {
+                    "type": "BOOL",
+                    "value": "TRUE"
+                }
+            }
+        }
+    ]
+}
