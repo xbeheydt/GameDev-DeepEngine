@@ -1,0 +1,7 @@
+{
+    "cmake.automaticReconfigure": true,
+    "cmake.configureOnEdit": false,
+    "python.analysis.extraPaths": [
+        "./Python"
+    ]
+}
