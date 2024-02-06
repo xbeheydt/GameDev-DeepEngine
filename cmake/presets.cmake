@@ -27,5 +27,5 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
             add_compile_options(-fdiagnostics-absolute-paths)
         endif()
         # TODO : Make others
-    endif()
+    endif(WIN32)
 endif(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
