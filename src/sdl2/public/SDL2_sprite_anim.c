@@ -29,7 +29,7 @@ typedef int bool;
 const bool true = 1;
 const bool false = 0;
 
-typedef struct
+typedef struct sSprite_Sheet
 {
     int nbCols;
     int nbRows;
@@ -37,43 +37,45 @@ typedef struct
     int heightSpr;
 } sSprite_Sheet;
 
-typedef struct
+typedef struct sSprite_Anim
 {
-    int start;
-    int end;
+    int         start;
+    int         end;
+    const char *name;
 } sSprite_Anim;
 
-typedef struct
+typedef struct sSprite_Pos
 {
     SDL_Rect rect;
 } sSprinte_Pos;
 
-typedef struct
+typedef struct sSDL_ctx
 {
     SDL_Window   *window;
     SDL_Renderer *renderer;
     TTF_Font     *font;
+    SDL_Texture  *font_tex;
 } sSDL_ctx;
 
 static const sSprite_Sheet sheet = {SHEET_NB_COLS, SHEET_NB_ROWS,
                                     SHEET_WIDTH_SPR, SHEET_HEIGHT_SPR};
 
-static const sSprite_Anim idle1 = {0, 3};
-static const sSprite_Anim crouch = {4, 7};
-static const sSprite_Anim run = {8, 13};
-static const sSprite_Anim jump = {14, 17};
-static const sSprite_Anim mid = {18, 21};
-static const sSprite_Anim fall = {22, 23};
-static const sSprite_Anim slide = {24, 28};
-static const sSprite_Anim grab = {29, 32};
-static const sSprite_Anim climb = {33, 37};
-static const sSprite_Anim idle2 = {38, 41};
-static const sSprite_Anim attack1 = {42, 46};
-static const sSprite_Anim attack2 = {47, 52};
-static const sSprite_Anim attack3 = {53, 58};
-static const sSprite_Anim hurt = {59, 61};
-static const sSprite_Anim die = {62, 68};
-static const sSprite_Anim jump2 = {69, 71};
+static const sSprite_Anim idle1 = {0, 3, "idle1\n"};
+static const sSprite_Anim crouch = {4, 7, "crouch"};
+static const sSprite_Anim run = {8, 13, "run"};
+static const sSprite_Anim jump = {14, 17, "jump"};
+static const sSprite_Anim mid = {18, 21, "mid"};
+static const sSprite_Anim fall = {22, 23, "fall"};
+static const sSprite_Anim slide = {24, 28, "slide"};
+static const sSprite_Anim grab = {29, 32, "grab"};
+static const sSprite_Anim climb = {33, 37, "climb"};
+static const sSprite_Anim idle2 = {38, 41, "idle2"};
+static const sSprite_Anim attack1 = {42, 46, "attack1"};
+static const sSprite_Anim attack2 = {47, 52, "attack2"};
+static const sSprite_Anim attack3 = {53, 58, "attack3"};
+static const sSprite_Anim hurt = {59, 61, "hurt"};
+static const sSprite_Anim die = {62, 68, "die"};
+static const sSprite_Anim jump2 = {69, 71, "jump2"};
 
 static void assign_animation(sSDL_ctx          *ctx,
                              sSprite_Anim      *anim,
@@ -81,6 +83,16 @@ static void assign_animation(sSDL_ctx          *ctx,
 {
     anim->start = selected.start;
     anim->end = selected.end;
+    // FIXME : Rendering after sprite change
+    // SDL_Color    col = {255, 0, 0, 255};
+    // SDL_Surface *sur =
+    //     TTF_RenderUTF8_Blended_Wrapped(ctx->font, "test\n", col, 300);
+    // SDL_Texture *tex = SDL_CreateTextureFromSurface(ctx->renderer, sur);
+    // SDL_Rect     rect = {0, 0, sur->w, sur->h};
+    // SDL_FreeSurface(sur);
+    // SDL_RenderCopy(ctx->renderer, tex, NULL, &rect);
+    // SDL_RenderPresent(ctx->renderer);
+    // SDL_DestroyTexture(tex);
 }
 
 static void frame_delay(clock_t start, clock_t now, uint8_t nb_spr)
@@ -241,7 +253,7 @@ static void init_app(sSDL_ctx *ctx)
 int main(int argc, char **argv)
 {
     SDL_Rect     sprites[NB_SPRITES];
-    sSDL_ctx     ctx = {NULL, NULL, NULL};
+    sSDL_ctx     ctx = {NULL, NULL, NULL, NULL};
     SDL_Rect     pos = {IMG_POSITION_X, IMG_POSITION_Y, SHEET_WIDTH_SPR,
                         SHEET_HEIGHT_SPR};
     sSprite_Anim current = {0, 0};
@@ -258,10 +270,10 @@ int main(int argc, char **argv)
     while (!done)
     {
         t1 = clock();
+        SDL_RenderClear(ctx.renderer);
         if (current.start + frame >= current.end + 1)
             frame = 0;
         done = handling_events(&ctx, &current, &frame);
-        SDL_RenderClear(ctx.renderer);
         SDL_RenderCopy(ctx.renderer, tex, &sprites[current.start + frame],
                        &pos);
         SDL_RenderPresent(ctx.renderer);
