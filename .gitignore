@@ -34,3 +34,7 @@
 # Folders
 out/
 extern/vcpkg/
+
+# Visual Studio
+.vs/*
+!.vs/*.json
