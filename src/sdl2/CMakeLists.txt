@@ -17,3 +17,14 @@ target_link_libraries(SDL2_health_bar PRIVATE
                       SDL2_image::SDL2_image)
 target_compile_definitions(SDL2_health_bar
                            PRIVATE HEALTHBAR_IMAGE="${PROJECT_SOURCE_DIR}/assets/images/healthbar.png")
+
+add_executable(SDL2_sprite_anim public/SDL2_sprite_anim.c)
+target_link_libraries(SDL2_sprite_anim PRIVATE
+                      SDL2::SDL2main
+                      SDL2::SDL2
+                      SDL2_image::SDL2_image
+                      SDL2_ttf::SDL2_ttf)
+target_compile_definitions(SDL2_sprite_anim
+                           PRIVATE SPRITE_IMAGE="${PROJECT_SOURCE_DIR}/assets/images/adventurer-sheet.png"
+                           PRIVATE FONT_PATH="${PROJECT_SOURCE_DIR}/assets/fonts/ttf/Roboto-Regular.ttf"
+                           )
