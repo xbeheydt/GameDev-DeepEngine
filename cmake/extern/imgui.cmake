@@ -1,4 +1,3 @@
 # Copyright Xavier Beheydt. All rights reserved.
 
-add_subdirectory(gui)
-add_subdirectory(sdl2)
+find_package(imgui CONFIG REQUIRED)
