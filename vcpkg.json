@@ -1,7 +1,24 @@
 {
     "dependencies": [
-        "sdl2",
+        {
+            "name": "sdl2",
+            "features": [
+                "vulkan"
+            ]
+        },
         "sdl2-image",
-        "sdl2-ttf"
+        "sdl2-ttf",
+        {
+            "name": "imgui",
+            "features": [
+                "sdl2-binding",
+                "vulkan-binding",
+                "win32-binding",
+                "dx11-binding",
+                "dx12-binding"
+            ]
+        },
+        "imgui-node-editor",
+        "vulkan"
     ]
 }
